@@ -1,38 +1,38 @@
 "use strict";
 //string
-var lname;
+let lname;
 lname = "Staplehurst";
-var newname = lname.toUpperCase();
+let newname = lname.toUpperCase();
 console.log(newname);
 //number
-var age;
+let age;
 age = 25;
 age = 25.5;
-var dob = "25";
-var result = parseInt(dob);
+let dob = "25";
+let result = parseInt(dob);
 console.log(result);
 //boolean
-var isValid = false;
+let isValid = false;
 console.log(isValid);
 //array
-var empList;
+let empList;
 empList = ["John", "Jane", "Doe"];
-var numList; //Same as number[]
+let numList; //Same as number[]
 numList = [1, 2, 3, 4, 5];
-var results = numList.filter(function (num) { return num > 2; });
+let results = numList.filter((num) => num > 2);
 console.log(results);
-var num = numList.find(function (num) { return num === 2; });
+let num = numList.find((num) => num === 2);
 console.log(num);
-var emp = empList.find(function (emp) { return emp === "Jane"; });
+let emp = empList.find((emp) => emp === "Jane");
 console.log(emp);
-var sum = numList.reduce(function (acc, curr) { return acc + curr; }, 0);
+let sum = numList.reduce((acc, curr) => acc + curr, 0);
 console.log(sum);
-var c = 1 /* Green */;
+let c = 1 /* Green */;
 console.log(c);
 //tuple
 //difference between tuple and array is that array wont fail at compile if you access outside of bounds,
 // but tuple will fail at compile time if you access outside of bounds
-var swapNums;
+let swapNums;
 function swapNumbers(num1, num2) {
     return [num2, num1];
 }
@@ -40,8 +40,9 @@ swapNums = swapNumbers(10, 20);
 console.log(swapNums);
 //any
 //DO NOT USE ANY
-var department;
+let department;
 department = "IT";
 console.log(department);
 department = 123;
 console.log(department);
+//# sourceMappingURL=datatypes.js.map
