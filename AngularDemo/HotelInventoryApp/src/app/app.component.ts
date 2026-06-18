@@ -15,4 +15,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'hotelinventoryapp';
+
+  role = 'Admin';
 }
