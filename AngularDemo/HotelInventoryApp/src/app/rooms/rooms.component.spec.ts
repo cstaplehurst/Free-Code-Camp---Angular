@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CommonModule } from '@angular/common';
 
 import { RoomsComponent } from './rooms.component';
 
@@ -8,9 +9,9 @@ describe('RoomsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RoomsComponent ]
-    })
-    .compileComponents();
+      declarations: [RoomsComponent],
+      imports: [CommonModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,5 +1,6 @@
 //Angular documentation says not to use I as the prefix for interfaces, but I prefer to use it to easily identify interfaces in the code.
-//Interfaces do not exist within js. Use classes instead of interfaces if you want to have a blueprint for objects that can be instantiated. Interfaces are only used for type checking and do not have any runtime presence in JavaScript.
+//Interfaces do not exist within js. Use classes instead of interfaces if you want to have a blueprint for objects that can be instantiated.
+// Interfaces are only used for type checking and do not have any runtime presence in JavaScript.
 export interface User {
   name: string;
   age?: number; // Optional property
@@ -7,7 +8,7 @@ export interface User {
   email: string;
 }
 
-//Object descructuring with aliasing
+//Object destructuring with aliasing
 let { name: userName, email: userLogin }: User = {
   name: "John Doe",
   id: 1,
