@@ -13,9 +13,9 @@ import { EmployeeComponent } from '../employee/employee.component';
   styleUrls: ['./container.component.scss'],
 })
 export class ContainerComponent implements OnInit, AfterContentInit {
-  constructor() {}
-
   @ContentChild(EmployeeComponent) employee!: EmployeeComponent;
+
+  constructor() {}
 
   ngOnInit(): void {}
 

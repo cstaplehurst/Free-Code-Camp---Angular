@@ -1,52 +1,54 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { Observable, shareReplay } from 'rxjs';
 import { RoomList } from '../rooms';
+import { APP_SERVICE_CONFIG } from 'src/app/AppConfig/appconfig.service';
+import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoomsService {
-  rooms: RoomList[] = [
-    {
-      roomNumber: 1,
-      roomType: 'Standard Room',
-      amenities: ['Air Conditioning', 'Free Wi-Fi', 'TV'],
-      price: 100,
-      photos: 'https://images.unsplash.com/photo-1560347876-aeef00ee58a1',
-      checkinTime: new Date('2023-07-01T14:00:00'),
-      checkoutTime: new Date('2023-07-02T12:00:00'),
-      rating: 4.5,
-    },
-    {
-      roomNumber: 2,
-      roomType: 'Deluxe Room',
-      amenities: ['Air Conditioning', 'Free Wi-Fi', 'TV', 'Mini Bar'],
-      price: 150,
-      photos: 'https://images.unsplash.com/photo-1560347876-aeef00ee58a1',
-      checkinTime: new Date('2023-07-01T14:00:00'),
-      checkoutTime: new Date('2023-07-02T12:00:00'),
-      rating: 6.1398,
-    },
-    {
-      roomNumber: 3,
-      roomType: 'Suite',
-      amenities: [
-        'Air Conditioning',
-        'Free Wi-Fi',
-        'TV',
-        'Mini Bar',
-        'Jacuzzi',
-      ],
-      price: 250,
-      photos: 'https://images.unsplash.com/photo-1560347876-aeef00ee58a1',
-      checkinTime: new Date('2023-07-01T14:00:00'),
-      checkoutTime: new Date('2023-07-02T12:00:00'),
-      rating: 8.09123,
-    },
-  ];
+  rooms: RoomList[] = [];
+  headers = new HttpHeaders({ token: '12345124325sdfs' });
 
-  constructor() {}
+  //$ annotates a stream
+  getRooms$ = this.http
+    .get<RoomList[]>('/api/rooms', { headers: this.headers }) //manually setting a header per request
+    .pipe(shareReplay(1));
 
-  getRooms(): RoomList[] {
-    return this.rooms;
+  constructor(
+    @Inject(APP_SERVICE_CONFIG) private config: AppConfig,
+    private http: HttpClient,
+  ) {
+    console.log('API URL:', this.config.apiEndpoint);
+  }
+
+  getRooms(): Observable<RoomList[]> {
+    return this.http.get<RoomList[]>('/api/rooms');
+    //proxy.conf.json specifies the api route as being localhost 3000.
+  }
+
+  addRoom(room: RoomList) {
+    return this.http.post<RoomList[]>('/api/rooms', room);
+  }
+
+  updateRoom(room: RoomList) {
+    return this.http.put<RoomList[]>(`/api/rooms/${room.roomNumber}`, room);
+  }
+
+  deleteRoom(id: string) {
+    return this.http.delete<RoomList[]>(`/api/rooms/${id}`);
+  }
+
+  getPhotos() {
+    const request = new HttpRequest(
+      'GET',
+      `https://jsonplaceholder.typicode.com/photos`,
+      {
+        reportProgress: true,
+      },
+    );
+    return this.http.request(request);
   }
 }
